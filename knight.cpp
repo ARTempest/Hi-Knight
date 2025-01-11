@@ -1,119 +1,100 @@
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <random>
 
 using namespace std;
 
-const int lineLength = 42;
+string quote = "Remember doing a project ";
 
-string quote = "Btw I'm a knight that prints randomly pre-generated messages.I'm gonna serve you for making your day a better thing";
+const int amountLines = 5;
+const int minimunLineLength = 42;
 
-int stringLength = quote.length();
+int quoteLength = quote.length();
+int lineLength = minimunLineLength;
+
+const int amountCharactersLimit = minimunLineLength * amountLines; // This is the limit for the normal amount of characters with a limit of 42
+
+string line[amountLines];
+
+void organizeQuote(){
+	int position = 0;
+	int beforeSpace = 0;
+	int nextEdge = lineLength;
 
 
-string line1 = "                                          ";
-string line2 = "                                          ";
-string line3 = "                                          ";
-string line4 = "                                          ";
-string line5 = "                                          ";
+	for (int i=0; i < quoteLength; i++){
+		if (quote[i] == ' '){
+			beforeSpace = i;
+		}
 
-string line[5] {line1,line2,line3,line4,line5};
+		//cout << beforeSpace << " < " << i << " = " << quote[i] << '\n';
 
-int calculateRest(int a, int b){
-	if ((a - b) < 0){
-		return 0;
-	}
+		if (beforeSpace < i && i == nextEdge){
+			
+			//cout << beforeSpace << '<' << i << '=' << quote[i] << '\n';
+			string spaces (i - beforeSpace - 1,' ');
 
-	return (a - b);
-}
+			//cout << spaces << '\n';
+			//cout << i << ' ' << quote[i] << '\n';
+			quote = quote.substr(position, beforeSpace - position) + spaces + quote.substr(beforeSpace, 1000);
+			//cout << i << ' ' << quote[i] << '\n';
 
-string fixQuote(){
-	string newQuote = quote;
-	for (int i=0; i < (stringLength / lineLength); i++){
-		int start = lineLength * (i+1);
-
-		if (newQuote[start] != ' '){
-			while (newQuote[start - 1] != ' '){
-				start--;
-			}
-
-			string rest(lineLength*(i+1) - start,' ');
-	
-			newQuote = newQuote.substr(0,start)+rest+newQuote.substr(start,stringLength);
-		} 
-		else{
-			newQuote = newQuote.substr(0,start)+newQuote.substr(start + 1,stringLength);
+			//cout << quote[lineLength*2] << ' ' << lineLength*2 << '\n';
 		}
 		
+		
+			
+		if (i == nextEdge && quote[i] == ' ') {
+			
+			quote = quote.substr(0, i) + quote.substr(i+1,1000);
+		}
+
+		if (i > nextEdge){
+			nextEdge += lineLength;
+		}
+
 
 	}
-	stringLength = newQuote.length();
-	return newQuote;
-
-}
-
-void createLines(){
-	int restChar = stringLength;
-
-	for (int i = 0; i <= (stringLength / lineLength); i++){
-
-		string rest(calculateRest(lineLength, restChar),' '); // calculate the amount of ' ' needed for this line
+	//cout << position << '\n';
+	quoteLength = quote.length();
+	string extraSpaces (lineLength * amountLines - quoteLength, ' ');
+	quote = quote + extraSpaces;
 	
-		line[i] = quote.substr((stringLength - restChar), lineLength)+rest;
-
-		restChar = calculateRest(restChar,lineLength); // substract the length of a line from the restant characters returning the actual rest of characters that haven't been procceseated 
-	}
 }
 
-string selectQuote(){
-	int amountLines = 0;
+void distributeQuote(){
+	int from = 0;
+	int to = lineLength;
+	string extraSpaces (lineLength - quoteLength, ' ');
 
-	string line;
-	ifstream myQuotes1 ("quotes.txt");
-		if (myQuotes1.is_open()){
-			while (getline(myQuotes1,line)){
-				amountLines++;
+
+	for (int i=0; i < amountLines; i++){
+
+		if (from <= quoteLength){
+			if (quoteLength < lineLength){
+				line[i] = quote.substr(from, to) + extraSpaces;
+			} else{
+				line[i] = quote.substr(from, to);
 			}
-			myQuotes1.close();
+
+
+			//+ extraSpaces;
+			//cout << quote.substr(from, to) << '\n';
+			from += lineLength;
+		} else {
+			string spaces (lineLength, ' ');
+			line[i] = spaces;
 		}
-
-
-	random_device rd;
-	mt19937 gen(rd());
-	uniform_int_distribution<> distr(1,amountLines);
-
-
-
-
-	ifstream myQuotes ("quotes.txt");
-
-	if (myQuotes.is_open()){
-	
-
-
-		for (int i=0; i < distr(gen); i++){
-			getline(myQuotes,line);
-		}
-		myQuotes.close();
+		
 	}
-	return line;
 }
 
-
-
-int main(){
-quote = selectQuote();
-selectQuote();
-quote = fixQuote();
-createLines();
-
+void printKnight(){
 cout << "                          ____________________________________________" << '\n';
-cout << "                          |" << line[0] << "|" << '\n';
-cout << "                          |" << line[1] << "|" << '\n';
-cout << "                          |" << line[2] << "|" << '\n';
-cout << "                          |" << line[3] << "|" << '\n';
-cout << "      A           {}      |" << line[4] << "|" << '\n';
+//cout << "                          |" << line1 << "|" << '\n';
+//cout << "                          |" << line2 << "|" << '\n';
+//cout << "                          |" << line3 << "|" << '\n';
+//cout << "                          |" << line4 << "|" << '\n';
+//cout << "      A           {}      |" << line5 << "|" << '\n';
 cout << " / \\, | ,        .--.     | _________________________________________|" << '\n';
 cout << "|    =|= >      /.--.\\   /_/" << '\n';
 cout << " \\ /` | `       |====|" << '\n';
@@ -127,13 +108,30 @@ cout << "      |   `""`  /   ^^  |   ':'   |" << '\n';
 cout << "      |       |       \\    :    /" << '\n';
 cout << "      |       |        \\   :   /"  << '\n';
 cout << "      |       |___/\\___|`-.:.-`" << '\n';
-cout << "      |        \\_ || _/"     << '\n';
+cout << "      |       \\_ || _/"     << '\n';
 cout << "      |        <_ >< _>" << '\n';
 cout << "      |        |  ||  |" << '\n';
 cout << "      |        |  ||  |" << '\n';
 cout << "      |       _\\.:||:./_" << '\n';
 cout << "      |      /____/\\____\\" << '\n';
+}
 
+int main(){
+	if (quoteLength > amountCharactersLimit - 15){
+		lineLength = quoteLength / amountLines + 10;
+	}
 
-return 0;
+	if (quoteLength > minimunLineLength){
+		organizeQuote();
+	}
+
+	distributeQuote();
+
+	cout << line[0] << '\n';
+	cout << line[1] << '\n';
+	cout << line[2] << '\n';
+	cout << line[3] << '\n';
+	cout << line[4] << '\n';
+
+	return 0;
 }
