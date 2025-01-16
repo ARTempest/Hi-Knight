@@ -1,16 +1,17 @@
-Let's kill all those bugs :)
-My sword is sharp, but my code is sharper.
-A knight's honor lies in the quality of his code, not just the battles he wins.
-I do not fear bugs, for i have the debugger by my side.
-The quest is not for treasure, but for clean code.
-I wield variables as a knight wields his sword, with purpose.
-A knight may fall in battle, but his line of code will stand forever.
-I seek no glory, only an algorith that runs without error.
-A knight's duty is to protect the kingdom, and my kingdom is the code I write.
-The only code that is truly dead is the one that's been refactored to perfection.
-A knight does not retreat; he refactors until the code is pure.
-To break my code is to break my honor. I strive for perfection with every line.
-A knight may protect his land, but i protect the integrity of every project i touch.
-The true measure of a knight's strength is not his sword, but his ability to craft code that stands the test of time.
-In the kingdom of bytes, I am both ruler and servant, ensuring evey line server the greater purpose.
-The knight's code is simple: honor, efficiency, and a commitment to never leave a function broken.
+Let's kill all those bugs :) 
+My sword is sharp, but my code is sharper. 
+A knight's honor lies in the quality of his code, not just the battles he wins. 
+I do not fear bugs, for i have the debugger by my side. 
+The quest is not for treasure, but for clean code. 
+I wield variables as a knight wields his sword, with purpose. 
+A knight may fall in battle, but his line of code will stand forever. 
+I seek no glory, only an algorithm that runs without error. 
+A knight's duty is to protect the kingdom, and my kingdom is the code I write. 
+The only code that is truly dead is the one that's been refactored to perfection. 
+A knight does not retreat; he refactors until the code is pure. 
+To break my code is to break my honor. I strive for perfection with every line. 
+A knight may protect his land, but i protect the integrity of every project i touch. 
+The true measure of a knight's strength is not his sword, but his ability to craft code that stands the test of time. 
+In the kingdom of bytes, I am both ruler and servant, ensuring every line server the greater purpose. 
+The knight's code is simple: honor, efficiency, and a commitment to never leave a function broken. 
+Chambea, jala. Cabron a ti no te quedan balas !!!
