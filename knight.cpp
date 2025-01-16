@@ -28,6 +28,7 @@ void organizeQuote(){
 			beforeSpace = i;
 		}
 
+		
 		if (beforeSpace < i && i == nextEdge){
 			
 			string spaces (i - beforeSpace - 1,' ');
@@ -107,7 +108,6 @@ string selectQuote(int position){
 
 	return line;
 }
-
 
 
 void printKnight(){
